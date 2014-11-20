@@ -1,7 +1,7 @@
 
 module.exports = function detectCSV(chunk, opts) {
   opts = opts || {}
-  chunk = chunk + '"'
+  if(Buffer.isBuffer(chunk)) chunk = chunk + ''
   var delimiters = opts.delimiters || [',', ';', '\t', '|']
   
   var lines = chunk.split(/[\n\r]+/g)
