@@ -1,6 +1,6 @@
 {
   "name": "detect-csv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detect if a chunk of a string is a csv",
   "main": "index.js",
   "scripts": {
