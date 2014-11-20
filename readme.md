@@ -1,4 +1,7 @@
 # detect-csv
+Windows | Mac/Linux
+------- | ---------
+[![Windows Build status](http://img.shields.io/appveyor/ci/finnp/detect-csv.svg)](https://ci.appveyor.com/project/finnp/detect-csv/branch/master) | [![Build Status](https://travis-ci.org/finnp/detect-csv.svg?branch=master)](https://travis-ci.org/finnp/detect-csv)
 
 Detect if a chunk in the beginning of a CSV (in the sense of character seperated values)
 is valid and determine the delimiter character. Install with `npm install detect-csv`
