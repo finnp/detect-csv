@@ -21,10 +21,7 @@
     "url": "https://github.com/finnp/detect-csv/issues"
   },
   "homepage": "https://github.com/finnp/detect-csv",
-  "dependencies": {
-    "csv-spectrum": "^0.2.0",
-    "tape": "^3.0.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "csv-spectrum": "^0.2.0",
     "tape": "^3.0.3"
