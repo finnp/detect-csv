@@ -1,0 +1,32 @@
+{
+  "name": "detect-csv",
+  "version": "1.0.0",
+  "description": "Detect if a chunk of a string is a csv",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finnp/detect-csv"
+  },
+  "keywords": [
+    "delimiter",
+    "csv",
+    "tsv"
+  ],
+  "author": "Finn Pauls",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/finnp/detect-csv/issues"
+  },
+  "homepage": "https://github.com/finnp/detect-csv",
+  "dependencies": {
+    "csv-spectrum": "^0.2.0",
+    "tape": "^3.0.3"
+  },
+  "devDependencies": {
+    "csv-spectrum": "^0.2.0",
+    "tape": "^3.0.3"
+  }
+}
