@@ -3,33 +3,37 @@ module.exports = function detectCSV(chunk, opts) {
   opts = opts || {}
   if(Buffer.isBuffer(chunk)) chunk = chunk + ''
   var delimiters = opts.delimiters || [',', ';', '\t', '|']
+  var newlines = opts.newlines || ['\n', '\r']
   
   var lines = chunk.split(/[\n\r]+/g)
   
-  var delimiter = determineDelimiter(lines[0], delimiters)
+  var delimiter = determineMost(lines[0], delimiters)
+  var newline = determineMost(chunk, newlines)
   
-  if(delimiter) {
-    return {delimiter: delimiter}
-  } 
-  return null
+  if (!delimiter) return null
+
+  return {
+    delimiter: delimiter,
+    newline: newline
+  }
 }
 
-function determineDelimiter(line, delimiters) {
+function determineMost(chunk, items) {
   var ignoreString = false
-  var delimCount = {}
+  var itemCount = {}
   var maxValue = 0
   var maxChar
   var currValue
-  delimiters.forEach(function (delimiter) {
-    delimCount[delimiter] = 0
+  items.forEach(function (item) {
+    itemCount[item] = 0
   })
-  for(var i = 0; i < line.length; i++) {
-    if(line[i] === '"') ignoreString = !ignoreString
-    else if(!ignoreString && line[i] in delimCount) {
-      currValue = ++delimCount[line[i]]
+  for(var i = 0; i < chunk.length; i++) {
+    if(chunk[i] === '"') ignoreString = !ignoreString
+    else if(!ignoreString && chunk[i] in itemCount) {
+      currValue = ++itemCount[chunk[i]]
       if(currValue > maxValue) {
         maxValue = currValue
-        maxChar = line[i]
+        maxChar = chunk[i]
       }
     }
   }

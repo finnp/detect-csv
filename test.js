@@ -16,14 +16,25 @@ test('detect csvs from csv-spectrum (and reject jsons)', function (t) {
 test('detect delimiters', function (t) {
   var d
   d = detect('a,b,c\n1,2,3') || {}
-  t.equals(d.delimiter, ',', ', and \\n')
+  t.equals(d.delimiter, ',', ',')
   
   d = detect('a;b;c\n\r1;2;3') || {}
-  t.equals(d.delimiter, ';', '; and \\n\\r')
+  t.equals(d.delimiter, ';', ';')
   
   d = detect('"a,,,,,,,,,"\tb\tc\n1\t2\t3') || {}
   t.equals(d.delimiter, '\t', '\\t and quotes')
   
+  t.end()
+})
+
+test('detect newlines', function (t) {
+  var d
+  d = detect('a,b,c\n1,2,3\n') || {}
+  t.equals(d.newline, '\n', '\\n')
+
+  d = detect('a,b,c\r1,2,3\r') || {}
+  t.equals(d.newline, '\r', '\\r')
+
   t.end()
 })
 
