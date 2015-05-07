@@ -16,7 +16,8 @@ var detect = require('detect-csv')
 var csv = detect('a,b,c\n1,2,3')
 
 console.log(csv.delimiter)
-// prints: ,
+console.log(csv.newline)
+// prints ',' and '\n'
 
 var isCsv = detect('notacsv')
 console.log('This is ' + (isCsv ? '' : 'not') + ' a csv') 
@@ -25,3 +26,6 @@ console.log('This is ' + (isCsv ? '' : 'not') + ' a csv')
 
 You add the following options as a second parameter:
 * *delimiters* Delimiters to detect, defaults to `[',', ';', '\t', '|']`
+* *newlines* Newline characters to detect, defaults to ['\n', '\r']
+
+Delimiters and newlines don't work with multiple characters, e.g. `\r\n`.
