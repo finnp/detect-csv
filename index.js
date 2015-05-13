@@ -10,7 +10,10 @@ module.exports = function detectCSV(chunk, opts) {
   var delimiter = determineMost(lines[0], delimiters)
   var newline = determineMost(chunk, newlines)
   
-  if (!delimiter) return null
+  if (!delimiter) {
+    if (chunk.match(/[{}]/g)) return null
+    delimiter = ','
+  }
 
   return {
     delimiter: delimiter,

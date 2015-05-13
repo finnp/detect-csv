@@ -38,6 +38,13 @@ test('detect newlines', function (t) {
   t.end()
 })
 
+test('detect single-column csv', function(t) {
+  var d
+  d = detect('single_column\rrow1\rrow2\rrow3\r') || {}
+  t.equals(d.delimiter, ',', 'delimiter is defaulted to ","')
+  t.equals(d.newline, '\r', 'newlines are detected correctly')
+  t.end()
+})
 
 //  should this considered be valid csv? {"a": 1, "b": 2, "c": 3}\n{"a": 1, "b": 2, "c": 3}
 // it's like ['{"a": 1', '"b": 2' ... ]
