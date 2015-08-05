@@ -40,19 +40,21 @@ test('detect newlines', function (t) {
 
 test('one column with quotes', function (t) {
   var d
-  d = detect('"hello"\n"test"')
+  d = detect('"hello"\n"test"') || {}
   t.equals(d.newline, '\n', 'newline')
-  t.notOk(d.delimiter) // ~false or null
+  t.notOk(d.delimiter, 'unknown delimiter') // ~false or null
 
-  d = detect('"hello ""you""\n"hi"')
+  d = detect('"hello ""you"""\n"hi"') || {}
   t.equals(d.newline, '\n', 'newline')
-  t.notOk(d.delimiter) // ~false or null
+  t.notOk(d.delimiter, 'unknown delimiter') // ~false or null
 
   d = detect('hello\nhello')
-  t.notOk(d)
+  t.notOk(d, 'not quoted')
 
   d = detect('"hello""\n"hello""')
-  t.notOk(d)
+  t.notOk(d, 'wrong quotes')
+
+  t.end()
 })
 
 //  should this considered be valid csv? {"a": 1, "b": 2, "c": 3}\n{"a": 1, "b": 2, "c": 3}
